@@ -1,22 +1,22 @@
-var player = null;
 var first = null;
 var second = null;
 
 window.onload = function () {
-    player = document.getElementById("player");
-    first = document.getElementById ("first");
-    second = document.getElementById ("second");
+    first = new Audio ();
+    first.src = "song.mp3";
+    second = new Audio ();
+    second.src = "loop.mp3";
     
-    player.addEventListener('ended', playNext);
-    player.src = first.src;
-    player.play ();
+    first.addEventListener ("ended", playNext);
+    second.addEventListener ("ended", loopSelf);
+
+    first.play ();
 }
 
 function playNext () {
-    if (player.src == first.src) {
-        player.src = second.src;
-    }
-    
-    player.play ();
+    second.play ();
 }
 
+function loopSelf () {
+    second.play ();
+}
